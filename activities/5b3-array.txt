@@ -1,0 +1,42 @@
+section .data
+    array dw 10, 5, 20, 15     ; Define the array of length 4 with integers
+
+section .text
+    global _start
+
+_start:
+    mov ecx, 4           ; Number of elements in the array
+    mov ax, [array]      ; Load the first element of the array into ax (temporary max value)
+    mov bx, 2           ; Start the loop from the second element of the array (index 1)
+
+loop_find_max:
+    ; Compare the current element with the maximum value stored in ax
+    cmp ax, [array + bx * 2]
+
+    ; If the current element is greater, update ax with the new maximum value
+    jg update_max
+
+continue_loop:
+    ; Increment the loop index (bx) and check if we have processed all elements
+    inc bx
+    loop loop_find_max
+
+found_max:
+    ; After the loop, ax will hold the largest element in the array
+    ; Now you can use ax for printing or further processing, like storing in another variable, etc.
+
+    add ax, '0'
+    mov eax, 4      ; 'sys_write' system call number
+    mov ebx, 1      ; file descriptor for stdout (1)
+    mov ecx, ax     ; Value to print
+    mov edx, 1      ; Number of bytes to be printed
+    int 0x80
+
+    ; Exit the program
+    mov eax, 1       ; sys_exit
+    int 0x80         ; syscall
+
+update_max:
+    ; Update ax with the new maximum value
+    mov ax, [array + bx * 2]
+    jmp continue_loop

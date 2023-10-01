@@ -1,0 +1,4 @@
+Plain text: pup
+Key: paw
+Encrypted: 001407
+Decrypted: pup

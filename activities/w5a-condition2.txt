@@ -1,0 +1,51 @@
+section .text
+        global _start
+
+_start:
+        mov eax,[num1]  ; eax = num1
+        cmp eax,[num2]  ; num1 _ num2
+        jg label1       ; jump to l1 if n1>n2
+        mov eax,[num2]  ; else eax=num2
+        jmp label1
+
+label1:
+        cmp eax,[num3]  ; num1/2 _ num3
+        jg label2       ; label2 if num2 > num3
+        mov eax,[num3]  ; lse eax=num3
+        jmp label2
+
+label2:
+        cmp eax,[num4]  ; num 1/2/3 _ num4
+        jg label3       ; label2 if eax > num3
+        mov eax,[num4]  ; else eax=num4
+        jmp label3
+label3:
+        cmp eax,[num5]  ; num1/2/3/4 _ num5
+        jg exit         ; label2 if eax > num3
+        mov eax,[num5]  ; else eax=num5
+        jmp exit
+
+exit:
+        add eax, '0'
+        mov [largest],eax
+
+        ; print
+        mov eax,4
+        mov ebx,1
+        mov ecx, largest
+        mov edx, 1
+        int 0x80
+
+
+        mov eax,1
+        int 0x80
+
+section .data
+        num1 dd 1
+        num2 dd 2
+        num3 dd 3
+        num4 dd 4
+        num5 dd 5
+
+segment .bss
+        largest resd 2

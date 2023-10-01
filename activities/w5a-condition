@@ -1,0 +1,16 @@
+
+section .text
+        global _start
+
+_start:
+        mov eax,1       ; set eax to 1 for odd,
+
+
+label:
+        add eax,2       ; generating odd numbers
+        cmp eax,19
+        jl label        ;jump if less
+
+        mov eax,1
+        int 0x80
+

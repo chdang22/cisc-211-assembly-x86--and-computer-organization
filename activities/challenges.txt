@@ -1,0 +1,5 @@
+Challenges: 
+
+I misunderstood the way to append and nothing was writing. I now understand that append operation is prep for the write to file operation and not a replacement.
+
+I misunderstood that we need to write to file the first two quotes, not just add it using text editor

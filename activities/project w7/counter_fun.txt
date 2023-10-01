@@ -1,0 +1,7 @@
+20000
+0.00282121 seconds
+0.00304127 seconds
+0.00281644 seconds
+0.00295281 seconds
+0.00274944 seconds
+0.00283933 seconds

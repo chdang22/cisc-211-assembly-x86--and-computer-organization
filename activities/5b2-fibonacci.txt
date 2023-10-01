@@ -1,0 +1,31 @@
+section .data
+    temp_fib dd 0   ; Declaring a double-word variable to hold the temporary Fibonacci value
+
+section .text
+    global _start
+
+_start:
+    ; Initialize variables
+    mov eax, 0       ; Fibonacci number 0
+    mov ebx, 1       ; Fibonacci number 1
+    mov ecx, 10      ; Number of Fibonacci numbers to calculate
+    mov edx, 0       
+
+loop:
+    ; Calculate Fib(n) = Fib(n-1) + Fib(n-2)
+
+    ; Add the current Fib number to the sum
+    add edx, eax
+
+    ; Store the next Fibonacci number in the variable (temp_fib)
+    mov [temp_fib], eax   ; temp_fib = Fib(n-1)
+    add eax, ebx          ; eax = Fib(n-1) + Fib(n-2)
+
+    ; Move the value from the variable (temp_fib) to ebx for the next iteration
+    mov ebx, [temp_fib]   ; ebx = Fib(n-1)
+
+    loop loop        
+
+    ; Exit the program
+    mov eax, 1       ; 'sys_exit' system call number
+    int 0x80         ; Invoke the kernel to exit the program
